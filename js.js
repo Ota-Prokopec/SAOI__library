@@ -41,8 +41,7 @@ class Find {
 
 
 
-        array(item, callback) {
-          callback(this.string, item);
+        array(item,  callback) {
            let pocet = 0;
            let arr = this.string;
 
@@ -51,6 +50,12 @@ class Find {
 
 
               for (let pos = 0; pos < 4; pos ++) {
+
+
+                callback(this.string, item);
+
+
+
                 pocet ++;
 
               //console.log(arr);
@@ -66,6 +71,13 @@ class Find {
               else {
 
                       //i = 0;
+
+
+                      if (arr[i] === item) {
+                        return {value:true, positon:[i, pos], chars:arr[i], true:true};
+                      }
+
+
                       if (pocet < this.string.length*4) {
                         pos = 0;
                         arr = this.string.splice(i, i + 1);
@@ -96,13 +108,13 @@ class Find {
 
         for (const [key, value] of Object.entries(this.string)) {
 
-          const find = callback(value);
+          const find = callback(key, value);
                             if (find.trueth) {
                    if (key === find.string) {
-                     return {key:"key", value:true, objectString:key};
+                     return {objectKey:"key", trueth:true, key:key, value:value};
                    }
                     if (value === find.string) {
-                         return {key:"value", value:true, objectString:value};
+                         return {objectKey:"value", trueth:true, key:key, value:value};
                    }
                                }
 

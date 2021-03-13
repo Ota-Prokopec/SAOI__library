@@ -14,24 +14,24 @@ const database = {
         d:"jak se máš"
 
 };
-const array = [4, [1], [4], 3, 4];
-const find = new Find(database);
+const array = [1, 4];
+let find;
 let word;
 
 
 
 
 
+    find = new Find(array);
 console.log(
-             find.array(1, function callback(array, item) {
+             find.array(1, true, function callback(array, item) {
 
              })
 );
 
 
 
-
-find.object(word.sentence("ahoj"));
+    find = new Find(database);
 console.log(
   find.object(function callback(value) {
                                  word = new Find(value);
