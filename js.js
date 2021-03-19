@@ -41,62 +41,55 @@ class Find {
 
 
 
-        array(item,  callback) {
-           let pocet = 0;
-           let arr = this.string;
+      array(item, callback, length) {
 
-
-            for (let i = 0; i < 4; i ++ ) {
-
-
-              for (let pos = 0; pos < 4; pos ++) {
-
-
-                callback(this.string, item);
+        let array1 = [];
+        let array = this.string;
+        let input = [];
 
 
 
-                pocet ++;
+                  for (let pos = 0; pos < length; pos ++) {
 
-              //console.log(arr);
+                 for (let i = 0; i < array.length; i ++) {
 
-              if (Array.isArray(arr[i])) {
+                   callback({length:i, height:pos});
 
-                    arr = arr[i];
-                    if (arr[i] === item) {
-                      return {value:true, positon:[i, pos], chars:arr[i], true:true};
-                    }
+                      //console.log(array);
 
-              }
-              else {
-
-                      //i = 0;
+                   if (Array.isArray(array[i])) {
 
 
-                      if (arr[i] === item) {
-                        return {value:true, positon:[i, pos], chars:arr[i], true:true};
-                      }
+                                      for (let a = 0; a < array[i].length; a++) {
 
 
-                      if (pocet < this.string.length*4) {
-                        pos = 0;
-                        arr = this.string.splice(i, i + 1);
-                        i = 0;
-                      }
+                                        array1.push(array[i][a]);
 
-              }
-
-            }
+                                      }
 
 
+                   }
+                   else {
+                     if (item === array[i] || item === array) {
 
-          }
+                       console.log("equal");
 
+                       input.push({item:item, array:this.string});
 
-          //console.log(arr);
+                     }
 
+                   }
 
-        }
+                 }
+                   array = array1;
+                   if (Array.isArray(array)) {
+                     length ++;
+                   }
+
+                 }
+
+                 return input;
+      }
 
 
 
@@ -106,23 +99,26 @@ class Find {
 
       object(callback) {
 
+            const array = [];
+
         for (const [key, value] of Object.entries(this.string)) {
 
-          const find = callback(key, value);
-                            if (find.trueth) {
+          const find = callback(key, value, array);
+                            if (find.isit) {
                    if (key === find.string) {
-                     return {objectKey:"key", trueth:true, key:key, value:value};
+                     array.push( {objectKey:"key", trueth:true, key:key, value:value});
                    }
                     if (value === find.string) {
-                         return {objectKey:"value", trueth:true, key:key, value:value};
+                         array.push( {objectKey:"value", trueth:true, key:key, value:value});
                    }
                                }
 
 
+                       }
 
 
 
-        }
+               return array;
 
 
 
